@@ -1,3 +1,7 @@
+// TODO Create a new branch at the start of the day
+// TODO Connect each button from the dom to the appropriate function within scripts
+
+
 const delBtn = document.querySelector('.delBtn')
 delBtn.addEventListener('click', () => {
     console.log('clicked!')
