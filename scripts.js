@@ -1,5 +1,5 @@
 // TODO Create a new branch at the start of the day
-// TODO Connect each button from the dom to the appropriate function within scripts
+
 
 function clearDisplay() {
     display.innerText = '';
@@ -14,8 +14,27 @@ function deleteElement() {
 
 const display = document.querySelector('#display');
 const upperDisplay = document.querySelector('#upper-display');
-
 const delBtn = document.querySelector('.delBtn');
+const operatorBtns = document.querySelectorAll('.operator');
+const decimalBtn = document.querySelector('#decimal')
+
+const op = operatorBtns.forEach(opBtn => {
+    let op;
+    opBtn.addEventListener('click', () => {
+        if (opBtn.innerText == '+') {
+            op = 'add'
+        } else if (opBtn.innerText == '-') {
+            op = 'subtract'
+        } else if (opBtn.innerText == '/') {
+            op = 'divide'
+        } else if (opBtn.innerText == '*') {
+            op = 'multiply'
+        }
+        return op;
+    });
+    return op;
+});
+
 
 
 delBtn.addEventListener('click', deleteElement)
@@ -28,12 +47,26 @@ const numbers = document.querySelectorAll('.numbers');
 
 numbers.forEach(number => {
     number.addEventListener('click', () => {
-        display.innerText += Number(number.value);
-        if (display.innerText.length >= 11) {
-            clearDisplay();
+
+        if (display.innerText.length >= 10) {
+
+        } else {
+            display.innerText += Number(number.value);
         }
-    })
+    });
 });
+
+
+decimalBtn.addEventListener('click', () => {
+    display.innerText += display.innerText.includes('.') ? '' : '.';
+    // if (display.innerText.includes('.')) {
+
+    // } else {
+    //     console.log('No decimal in string.')
+    //     display.innerText += '.'
+    // }
+})
+
 
 const add = (...numbers) => {
     console.log(typeof (numbers))
