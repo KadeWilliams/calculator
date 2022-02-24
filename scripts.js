@@ -1,25 +1,38 @@
 // TODO Create a new branch at the start of the day
 // TODO Connect each button from the dom to the appropriate function within scripts
 
+function clearDisplay() {
+    display.innerText = '';
+    upperDisplay.innerText = '';
+}
 
-const display = document.querySelector('#display')
+function deleteElement() {
+    let text = display.innerText;
+    text = text.slice(0, -1);
+    display.innerText = text;
+}
 
-display.addEventListener('click', () => { console.log('DISPLAY', Number(display.innerText)) })
+const display = document.querySelector('#display');
+const upperDisplay = document.querySelector('#upper-display');
 
 const delBtn = document.querySelector('.delBtn');
 
-delBtn.addEventListener('click', () => {
-    console.log('clicked!');
-})
+
+delBtn.addEventListener('click', deleteElement)
 
 const clear = document.querySelector('.clear');
+clear.addEventListener('click', clearDisplay);
+
 
 const numbers = document.querySelectorAll('.numbers');
 
-
-
 numbers.forEach(number => {
-    number.addEventListener('click', () => console.log(number.value))
+    number.addEventListener('click', () => {
+        display.innerText += Number(number.value);
+        if (display.innerText.length >= 11) {
+            clearDisplay();
+        }
+    })
 });
 
 const add = (...numbers) => {

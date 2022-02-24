@@ -1,3 +1,5 @@
+/* add drop shadow to buttons */
+
 * {
     font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
@@ -31,6 +33,16 @@ body {
     color: rgb(225, 225, 225);
 }
 
+.calculator-body,
+.clear-delete > * ,
+.divide-row > * ,
+.multiply-row > * ,
+.subtract-row > *, 
+.add-row > * {
+    filter: drop-shadow(5px 8px 4px rgb(108, 107, 107))
+}
+
+
 .clear-delete > *:hover ,
 .divide-row > *:hover ,
 .multiply-row > *:hover ,
@@ -45,15 +57,6 @@ body {
 .subtract-row > *, 
 .add-row > * {
     width: 22%;
-}
-
-#display,
-.clear-delete > * ,
-.divide-row > * ,
-.multiply-row > * ,
-.subtract-row > *, 
-.add-row > * {
-    /* border-radius: 5px; */
 }
 
 .clear-delete > * {
@@ -74,16 +77,20 @@ body {
 }
 
 
-#display {
+#display,
+#upper-display {
     padding: 0 25px;
+    padding-bottom: 10px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    align-content: center;
-    align-items: center;
-    background-color: rgb(89, 97, 83);
+    /* align-content: center; */
+    align-items: flex-end;
+    background-color: rgb(106, 114, 99);
     height: 100px;
-    color:rgb(0, 0, 0)
+    color:rgb(0, 0, 0);
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 2px rgb(77, 73, 73);
 }
 
 .main {
