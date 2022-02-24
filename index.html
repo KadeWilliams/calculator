@@ -8,6 +8,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
+    </style>
 </head>
 
 <body>
@@ -15,35 +18,37 @@
 
         <div class="calculator-body">
             <div class="display">
-                <div id="display">123,456,789</div>
+                <div id="display">
+                    123456789
+                </div>
             </div>
             <div class="clear-delete">
                 <button class="clear">Clear</button>
                 <button class="delBtn">Delete</button>
             </div>
             <div class="divide-row">
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>/</button>
+                <button class="numbers" value="7">7</button>
+                <button class="numbers" value="8">8</button>
+                <button class="numbers" value="9">9</button>
+                <button class="operator">/</button>
             </div>
             <div class="multiply-row">
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>*</button>
+                <button class="numbers" value="4">4</button>
+                <button class="numbers" value="5">5</button>
+                <button class="numbers" value="6">6</button>
+                <button class="operator">*</button>
             </div>
             <div class="subtract-row">
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>-</button>
+                <button class="numbers" value="1">1</button>
+                <button class="numbers" value="2">2</button>
+                <button class="numbers" value="3">3</button>
+                <button class="operator">-</button>
             </div>
             <div class="add-row">
-                <button>0</button>
-                <button>.</button>
-                <button>=</button>
-                <button>+</button>
+                <button class="numbers" value="0">0</button>
+                <button class="operator">.</button>
+                <button class="operator">=</button>
+                <button class="operator">+</button>
             </div>
         </div>
     </main>

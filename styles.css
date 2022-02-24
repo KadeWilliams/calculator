@@ -1,3 +1,7 @@
+* {
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
 body {
     margin: 0;
 }
@@ -6,8 +10,8 @@ body {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: purple;
-    border-radius: 4%;
+    background-color: rgb(235, 220, 183);
+    max-height: 600px;
 }
 
 .calculator-body > * {
@@ -20,9 +24,21 @@ body {
 .multiply-row > * ,
 .subtract-row > *, 
 .add-row > * {
-    padding: 30px;
+    padding: 10px;
     font-size: 48px;
+    background-color: black;
+    border: none;
+    color: rgb(225, 225, 225);
 }
+
+.clear-delete > *:hover ,
+.divide-row > *:hover ,
+.multiply-row > *:hover ,
+.subtract-row > *:hover , 
+.add-row > *:hover {
+    background-color: rgb(62, 58, 58);
+}
+
 
 .divide-row > * ,
 .multiply-row > * ,
@@ -37,11 +53,12 @@ body {
 .multiply-row > * ,
 .subtract-row > *, 
 .add-row > * {
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
 .clear-delete > * {
     width: 47.5%;
+    background-color: rgb(172, 60, 60);
 }
 
 .display,
@@ -50,7 +67,7 @@ body {
 .multiply-row ,
 .subtract-row, 
 .add-row {
-    width: 500px;
+    width: 400px;
     height: auto;
     display: flex;
     justify-content: space-between;
@@ -64,16 +81,17 @@ body {
     justify-content: flex-end;
     align-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: rgb(89, 97, 83);
     height: 100px;
+    color:rgb(0, 0, 0)
 }
 
 .main {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 75vh;
-    min-height: 500px;
+    height: 100vh;
+    /* height: 500px;
     padding: 10px;
-    margin-top: 50px ;
+    margin-top: 50px ; */ 
 }

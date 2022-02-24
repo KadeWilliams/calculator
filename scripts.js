@@ -2,11 +2,25 @@
 // TODO Connect each button from the dom to the appropriate function within scripts
 
 
-const delBtn = document.querySelector('.delBtn')
+const display = document.querySelector('#display')
+
+display.addEventListener('click', () => { console.log('DISPLAY', Number(display.innerText)) })
+
+const delBtn = document.querySelector('.delBtn');
+
 delBtn.addEventListener('click', () => {
-    console.log('clicked!')
+    console.log('clicked!');
 })
-const clear = document.querySelector('.clear')
+
+const clear = document.querySelector('.clear');
+
+const numbers = document.querySelectorAll('.numbers');
+
+
+
+numbers.forEach(number => {
+    number.addEventListener('click', () => console.log(number.value))
+});
 
 const add = (...numbers) => {
     console.log(typeof (numbers))
