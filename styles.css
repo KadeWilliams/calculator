@@ -39,7 +39,8 @@ body {
 .multiply-row > * ,
 .subtract-row > *, 
 .add-row > * {
-    filter: drop-shadow(5px 8px 4px rgb(108, 107, 107))
+    filter: drop-shadow(5px 8px 4px rgb(108, 107, 107));
+    border: 2px solid black;
 }
 
 

@@ -1,4 +1,11 @@
 // TODO Create a new branch at the start of the day
+const display = document.querySelector('#display');
+const upperDisplay = document.querySelector('#upper-display');
+const delBtn = document.querySelector('.delBtn');
+const operatorBtns = document.querySelectorAll('.operator');
+const decimalBtn = document.querySelector('#decimal')
+const numbers = document.querySelectorAll('.numbers');
+const clear = document.querySelector('.clear');
 
 
 function clearDisplay() {
@@ -12,63 +19,37 @@ function deleteElement() {
     display.innerText = text;
 }
 
-const display = document.querySelector('#display');
-const upperDisplay = document.querySelector('#upper-display');
-const delBtn = document.querySelector('.delBtn');
-const operatorBtns = document.querySelectorAll('.operator');
-const decimalBtn = document.querySelector('#decimal')
+function checkLength(number) {
+    return display.innerText.length <= 9 ? number.value : '';
+}
 
-const op = operatorBtns.forEach(opBtn => {
-    let op;
-    opBtn.addEventListener('click', () => {
-        if (opBtn.innerText == '+') {
-            op = 'add'
-        } else if (opBtn.innerText == '-') {
-            op = 'subtract'
-        } else if (opBtn.innerText == '/') {
-            op = 'divide'
-        } else if (opBtn.innerText == '*') {
-            op = 'multiply'
-        }
-        return op;
-    });
-    return op;
-});
+function addValue(number) {
+    display.innerText += number.value
+}
 
+// numbers.forEach(number => getOps)
 
 
 delBtn.addEventListener('click', deleteElement)
 
-const clear = document.querySelector('.clear');
 clear.addEventListener('click', clearDisplay);
-
-
-const numbers = document.querySelectorAll('.numbers');
 
 numbers.forEach(number => {
     number.addEventListener('click', () => {
-
-        if (display.innerText.length >= 10) {
-
-        } else {
-            display.innerText += Number(number.value);
+        let shortEnough = checkLength(number)
+        if (shortEnough) {
+            addValue(number)
         }
     });
 });
 
 
 decimalBtn.addEventListener('click', () => {
-    display.innerText += display.innerText.includes('.') ? '' : '.';
-    // if (display.innerText.includes('.')) {
-
-    // } else {
-    //     console.log('No decimal in string.')
-    //     display.innerText += '.'
-    // }
+    display.innerText += display.innerText.includes('.') || display.innerText.length >= 10 ? '' : '.';
 })
 
 
-const add = (...numbers) => {
+function add(...numbers) {
     console.log(typeof (numbers))
     console.log(numbers)
     if (numbers.length < 1) {
@@ -81,7 +62,7 @@ const add = (...numbers) => {
     return sum;
 }
 
-const subtract = (...numbers) => {
+function subtract(...numbers) {
     let difference = numbers[0];
     for (let i = 1; i <= numbers.length - 1; i++) {
         difference -= numbers[i];
@@ -89,7 +70,7 @@ const subtract = (...numbers) => {
     return difference;
 }
 
-const multiply = (...numbers) => {
+function multiply(...numbers) {
     let product = 1;
     numbers.forEach(number => {
         product *= number;
@@ -97,7 +78,7 @@ const multiply = (...numbers) => {
     return product;
 }
 
-const divide = (...numbers) => {
+function divide(...numbers) {
     let quotient = numbers[0];
     console.log(quotient)
     for (let i = 1; i <= numbers.length - 1; i++) {
@@ -106,7 +87,35 @@ const divide = (...numbers) => {
     return quotient;
 }
 
-const operate = (func, ...numbers) => {
-
+function operate(func, ...numbers) {
+    return window[`${func}`](...numbers)
     return func(...numbers)
 }
+
+const expressions = [];
+
+operatorBtns.forEach(operator => {
+    operator.addEventListener('click', (e) => {
+        let expr = Number(display.innerText)
+        let op;
+        switch (e.target.value) {
+            case '+':
+                op = 'add'
+                break;
+            case '-':
+                op = 'subtract'
+                break;
+            case '*':
+                op = 'multiply'
+                break;
+            case '/':
+                op = 'divide'
+                break;
+            default:
+                display.innerText = '';
+        }
+        let final = operate(op, expr)
+        display.innerText = final * 2
+    })
+})
+
