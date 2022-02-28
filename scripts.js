@@ -7,6 +7,13 @@ const decimalBtn = document.querySelector('#decimal')
 const numbers = document.querySelectorAll('.numbers');
 const clear = document.querySelector('.clear');
 
+const operations = {
+    '+': 'add',
+    '-': 'subtract',
+    '*': 'multiply',
+    '/': 'divide',
+    equal: '='
+}
 
 function clearDisplay() {
     display.innerText = '';
@@ -49,30 +56,31 @@ decimalBtn.addEventListener('click', () => {
 })
 
 
-function add(...numbers) {
-    console.log(typeof (numbers))
-    console.log(numbers)
-    if (numbers.length < 1) {
+function add(numbers) {
+    const nums = [...numbers]
+    if (nums.length < 1) {
         return "I'm empty"
     }
     let sum = 0;
-    numbers.forEach(number => {
+    nums.forEach(number => {
         sum += number;
     });
     return sum;
 }
 
-function subtract(...numbers) {
-    let difference = numbers[0];
-    for (let i = 1; i <= numbers.length - 1; i++) {
-        difference -= numbers[i];
+function subtract(numbers) {
+    const nums = [...numbers]
+    let difference = nums[0];
+    for (let i = 1; i <= nums.length - 1; i++) {
+        difference -= nums[i];
     }
     return difference;
 }
 
-function multiply(...numbers) {
+function multiply(numbers) {
+    const nums = [...numbers]
     let product = 1;
-    numbers.forEach(number => {
+    nums.forEach(number => {
         product *= number;
     })
     return product;
@@ -89,33 +97,49 @@ function divide(...numbers) {
 
 function operate(func, ...numbers) {
     return window[`${func}`](...numbers)
-    return func(...numbers)
 }
 
 const expressions = [];
+const opers = [];
 
 operatorBtns.forEach(operator => {
     operator.addEventListener('click', (e) => {
-        let expr = Number(display.innerText)
-        let op;
-        switch (e.target.value) {
-            case '+':
-                op = 'add'
-                break;
-            case '-':
-                op = 'subtract'
-                break;
-            case '*':
-                op = 'multiply'
-                break;
-            case '/':
-                op = 'divide'
-                break;
-            default:
-                display.innerText = '';
+        let expr;
+        let op
+        if (display.innerText == '') {
+
+        } else {
+            expr = Number(display.innerText);
+            expressions.push(expr);
+            if (e.target.value == '=') {
+
+                final = operate(opers.pop(), expressions)
+            }
+
+            switch (e.target.value) {
+                case '+':
+                    op = 'add'
+                    opers.push(op)
+                    break;
+                case '-':
+                    op = 'subtract'
+                    opers.push(op)
+                    break;
+                case '*':
+                    op = 'multiply'
+                    opers.push(op)
+                    break;
+                case '/':
+                    op = 'divide'
+                    opers.push(op)
+                    break;
+            }
+            display.innerText = '';
+            if (expr || expr === 0) {
+                upperDisplay.innerText += expr + e.target.value
+            }
+            // console.log(final)
+            console.log(opers.pop(), expressions)
         }
-        let final = operate(op, expr)
-        display.innerText = final * 2
     })
 })
-
