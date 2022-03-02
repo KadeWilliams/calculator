@@ -128,12 +128,12 @@ operatorBtns.forEach(operator => {
             }
             if (expressions.length == 2) {
 
-                final = operate(currOperator[currOperator.length - 1], expressions[0], expressions[1]);
+                final = operate(currOperator[0], expressions[0], expressions[1]);
                 console.log(expressions)
                 expressions.length = 0;
                 expressions.push(final);
+                currOperator.shift();
                 console.log(final);
-                console.log(currOperator[currOperator.length - 1])
                 upperDisplay.innerText = final;
             }
 
