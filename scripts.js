@@ -83,34 +83,62 @@ function operate(func, a, b) {
 
 
 
+// operatorBtns.forEach(operator => {
+// operator.addEventListener('click', e => {
+//     expressions.push(Number(display.innerText));
+//     display.innerText = '';
+//     let final;
+//     let previousOperator;
+
+//     if (e.target.value == '=' && typeof (final) == 'number') {
+//         final = operate(previousOperator, expressions[0], expressions[1]);
+//             expressions.length = 0;
+//             expressions.push(final)
+//             currOperator.pop()
+//         }
+//         if (expressions.length === 2 || e.target.value == '=') {
+//             if (currOperator[0] == '=' && e.target.value != '=') {
+//                 final = operate(operations[e.target.value], expressions[0], expressions[1]);
+//             } else {
+//                 final = operate(currOperator[0], expressions[0], expressions[1]);
+//                 expressions.pop()
+//                 expressions.pop()
+//                 previousOperator = currOperator.pop();
+//             }
+
+//             expressions.push(final);
+//             upperDisplay.innerText = final;
+//         }
+//         display.innerText = '';
+
+//         currOperator.push(operations[e.target.value]);
+//     })
+// })
+
 operatorBtns.forEach(operator => {
     operator.addEventListener('click', e => {
-        expressions.push(Number(display.innerText));
-        display.innerText = '';
         let final;
-        let previousOperator;
+        if (display.innerText == '') {
+            currOperator.push(operations[e.target.value])
+        } else {
+            currOperator.push(operations[e.target.value])
+            expressions.push(Number(display.innerText))
+            if (e.target.value == '=') {
+                currOperator.pop();
+            }
+            if (expressions.length == 2) {
 
-        if (e.target.value == '=' && typeof (final) == 'number') {
-            final = operate(previousOperator, expressions[0], expressions[1]);
-            expressions.length = 0;
-            expressions.push(final)
-            currOperator.pop()
-        }
-        if (expressions.length === 2 || e.target.value == '=') {
-            if (currOperator[0] == '=' && e.target.value != '=') {
-                final = operate(operations[e.target.value], expressions[0], expressions[1]);
-            } else {
-                final = operate(currOperator[0], expressions[0], expressions[1]);
-                expressions.pop()
-                expressions.pop()
-                previousOperator = currOperator.pop();
+                final = operate(currOperator[currOperator.length - 1], expressions[0], expressions[1]);
+                console.log(expressions)
+                expressions.length = 0;
+                expressions.push(final);
+                console.log(final);
+                console.log(currOperator[currOperator.length - 1])
+                upperDisplay.innerText = final;
             }
 
-            expressions.push(final);
-            upperDisplay.innerText = final;
+            display.innerText = ''
         }
-        display.innerText = '';
 
-        currOperator.push(operations[e.target.value]);
     })
 })
